@@ -116,6 +116,10 @@ Message me here:
 
 [twitch.tv/tracerman][9]
 
+or
+
+[twitter.com/aleks_tracer][10]
+
 [1]: https://i.imgur.com/FOF5KXr.png
 [2]: https://i.imgur.com/EdsdV9t.png
 [3]: https://greasyfork.org/scripts/185-monster-twitch
@@ -125,3 +129,4 @@ Message me here:
 [7]: https://i.imgur.com/nR5wi40s.png "Activated - Chat Disabled"
 [8]: http://userstyles.org/styles/78830/twitch-tv-dark-black-customisable-theme
 [9]: http://www.twitch.tv/tracerman
+[10]: http://www.twitter.com/aleks_tracer
