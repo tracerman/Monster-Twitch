@@ -116,7 +116,7 @@ Message me here:
 
 [twitch.tv/tracerman][9]
 
-or
+*or*
 
 [twitter.com/aleks_tracer][10]
 
