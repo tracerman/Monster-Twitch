@@ -1,15 +1,14 @@
 // ==UserScript==
 // @name       Monster Twitch
-// @namespace  http://enut.co/dev
-// @author	   Tracerman
-// @version    2.781
+// @author     Tracerman
+// @version    2.783
 // @description  Stretches stream to max width and hides left navigation bar with an Monster toggle that's to the right of the volume rocker
 // @updateURL   https://monkeyguts.com/104.meta.js?c
 // @downloadURL https://monkeyguts.com/104.user.js?c
 // @include        http://*.twitch.tv/*
 // @include        http://twitch.tv/*
-// @exclude		   http://www.twitch.tv/*/chat?popout=
-// @exclude		   http://www.twitch.tv/*/popout
+// @exclude      http://www.twitch.tv/*/chat?popout=
+// @exclude      http://www.twitch.tv/*/popout
 // @exclude        http://www.twitch.tv/*/dashboard
 // @exclude        http://www.twitch.tv/inbox*
 // @exclude        http://www.twitch.tv/subscriptions*
@@ -18,9 +17,8 @@
 // @exclude        https://api.twitch.tv/*
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
 // @grant       GM_addStyle
-// @copyright  2014 tracerman
+// @copyright  2014  tracerman
 // @icon        https://monkeyguts.com//icon/104.png
-
 // ==/UserScript==
 /*--- Note, gmMain () will fire under all these conditions:
     1) The page initially loads or does an HTML reload (F5, etc.).
@@ -50,7 +48,7 @@ function gmMain () {
     function ChatWFix(){
  GM_addStyle ( multilineStr ( function () {/*!
     #right_col:before {
-    	left: 0px
+      left: 0px
     }
     */} ) );
     $(".segmented_tabs").css("z-index", "4");
@@ -65,7 +63,6 @@ setTimeout(function () {ChatWFix()}, 5000);
 var showCheck3 = 0;
 var zNode3       = document.createElement ('div');
 var pHeight;
-        //---alert(pHeight);
 var bHeight;
 var cHeight = "340px";
 var cDisp;
@@ -73,6 +70,7 @@ var conWidth;
 var tHeight;
 var zHeight;
 var mrCheck;
+var mmLeft;
 var zWidth = $('#main_col').css("width");
 var ZWidthCheck = zWidth;
 var chatHeight = "340px";
@@ -86,18 +84,16 @@ zNode3.innerHTML = '<button id="myButton3" type="button">'
                 + '</button>';
 
 zNode3.setAttribute ('id', 'myContainer3');
-//--- zNode3.style.background=" url('http://i.imgur.com/hvsy1bQ.png')";
-//--- Old Append document.body.appendChild (zNode3);
-$("#player").append(zNode3);
-//--- document.getElementById('player').appendChild(zNode3);
-//--- Node3.style.background="url('i.imgur.com/hvsy1bQ.png')";
-//--- zNode3.setAttribute ('style', 'background:' + 'url(http://imgur.com/hvsy1bQ.png)');
-//--- Activate the newly added button.
-//--- NO document.getElementById ("myButton3").addEventListener (
-//--- NO     "click", ButtonClickAction, false
-//--- NO  );
-$(document.body).on ("click", "#myButton3", ButtonClickAction);
 
+$("#player").append(zNode3);
+        
+$(document.body).on ("click", "#myButton3", ButtonClickAction);
+var rTest = 360;
+        
+function bRotate() {
+        setTimeout(function(){$("#myContainer3").css("transform", "rotate(" + rTest + "deg)")}, 500);
+}
+        
 function ButtonClickAction (zEvent) {
     zWidth = $('#main_col').css("width");
 if(showCheck3 == 1) { 
@@ -127,7 +123,7 @@ if(showCheck3 == 1) {
        this.style.setProperty("margin-left", "", "important");
 });
     $("#main_col").css("margin-left","").css("width", zWidth);
-	$("#main_col").css("width", "");
+  $("#main_col").css("width", "");
     $("#main_col").each(function () {
        //--- this.style.setProperty("width", "", "important");
 });
@@ -232,6 +228,8 @@ if(showCheck3 == 1) {
     $("#right_col .top").css({"z-index":"4"});
     
     //--- showCheck3 = 2;
+    bRotate();
+    rTest = 0;
     showCheck3 = 0;
 }
 else if(showCheck3 == 0) {
@@ -245,7 +243,8 @@ else if(showCheck3 == 0) {
     chatLHeight = $('#chat_line').css("width");
     chatLLHeight = $('#chat_line_list').css("width");
     chatLLPadding = $('#chat_line_list').css("padding");
-    cDisp 	= $('#right_col').css("display");
+    cDisp   = $('#right_col').css("display");
+    localStorage.mmLeft = $('#main_col').css("margin-left");
     //--- zWidth = $('#main_col').css("width");
     chatLeft= $('.send-chat-button').css("left");
     //--- intHeight = $(".chat-interface").css("height");
@@ -315,7 +314,7 @@ else if(showCheck3 == 0) {
 });
         
     //--- Chat Background
-    $(".chat-messages").css("background", "white").css("margin-bottom", "3px");
+    $(".chat-messages").css("background", "white").css("margin-bottom", "3px").css("overflow", "hidden");
     
     //--- Chat Bottom
     $(".chat-messages").each(function () {
@@ -329,7 +328,7 @@ else if(showCheck3 == 0) {
       this.style.setProperty("height", "100px", "important");
 });
         
-    $(".textarea-contain").css("border", "2px solid rgb(100, 65, 165)");
+    $(".textarea-contain").css("border", "2px ridge rgb(100, 65, 165)");
     }
     else {
         $("#content").each(function () {
@@ -383,6 +382,8 @@ else if(showCheck3 == 0) {
 });
     //--- $("#myContainer3").fadeTo("fast", 1.0).css({"background":"url('http://i61.tinypic.com/ri80w5.png')"}).delay(300).css({"box-shadow":"inset 0 0 20px black"});
     $("#myContainer3").css({"opacity":"1"}).delay(300).css({"box-shadow":"inset 0 0 20px black"});
+    bRotate();
+    rTest = 360;
     showCheck3 = 1;
  
 }
@@ -438,30 +439,32 @@ else if(showCheck3 == 3) {
 GM_addStyle ( multilineStr ( function () {/*!
     #myContainer3 {
         position:               absolute;
-        background:				url("http://i61.tinypic.com/ri80w5.png");
-        opacity:				0.7;
-        background-size:		contain !important; 
-        box-shadow:				inset 0 0 20px black;
+        border-radius:      25px;
+        transition:       1s ease-in-out;
+        background:       url("http://i61.tinypic.com/ri80w5.png");
+        opacity:        0.7;
+        background-size:    contain !important; 
+        box-shadow:       inset 0 0 20px black;
         bottom:                 0;
-        left:					0;
+        left:         0;
         font-size:              13px;
         border:                 0px outset black;
         margin-left:            160px;
-        margin-bottom:			0px;
+        margin-bottom:      0px;
         opacity:                0.5;
-        width:					27px !important;
-        height:					27px !important;
+        width:          27px !important;
+        height:         27px !important;
         z-index:                999;
         padding:                0px 0px;
     }
     #myButton3 {
         cursor:                 pointer;
-       	background: 			transparent;
-    	border: 				none !important;
-        width:					27px !important;
-        height:					27px !important;
-        color:					purple;
-        font-weight:			bold;
+        background:       transparent;
+      border:         none !important;
+        width:          27px !important;
+        height:         27px !important;
+        color:          purple;
+        font-weight:      bold;
     }
     #myContainer3 p {
         color:                  purple;

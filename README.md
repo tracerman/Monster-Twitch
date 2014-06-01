@@ -37,7 +37,9 @@ Twitch Addons/Extensions:
 [![Deactivated][4]](https://i.imgur.com/9WA1qTC.png)   [![Activated][5]](https://i.imgur.com/o7DLMpY.png)   [![Decactivated - Closed Chat][6]](https://i.imgur.com/p6rIaxc.png)   [![Activated - Closed Chat][7]](http://i.imgur.com/nR5wi40.png)
 
 ### Changelog
-
+* NEW \- Monster Button Animation & Style - 5/31/14
+* TWEAK \- Set Border to Ridge on textarea - 5/31/14
+* FIX \- Fixed the weird chat lag by setting overscroll to hidden on chat-messages - 5/29/14
 * NEW \- New Chat Button Background - 5/28/14
 * NEW \- Button Backgrounds & Borders - 5/28/14
 * TWEAK \- Tweaked the chat-interface border to 2px ridge - 5/28/14
@@ -116,10 +118,6 @@ Message me here:
 
 [twitch.tv/tracerman][9]
 
-and/or
-
-[twitter.com/aleks_tracer][10]
-
 [1]: https://i.imgur.com/FOF5KXr.png
 [2]: https://i.imgur.com/EdsdV9t.png
 [3]: https://greasyfork.org/scripts/185-monster-twitch
@@ -129,4 +127,3 @@ and/or
 [7]: https://i.imgur.com/nR5wi40s.png "Activated - Chat Disabled"
 [8]: http://userstyles.org/styles/78830/twitch-tv-dark-black-customisable-theme
 [9]: http://www.twitch.tv/tracerman
-[10]: http://www.twitter.com/aleks_tracer
